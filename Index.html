@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Bio Information</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- External CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar">
+    <div class="nav-left">
+      <i class="fa-solid fa-users-gear logo-icon"></i>
+      <span class="logo-text">HR Insurance Portal</span>
+    </div>
+  </header>
+
+  <!-- App Layout Wrapper -->
+  <div class="app-layout">
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active">
+            <a href="#">
+              <i class="fa-regular fa-address-card"></i>
+              <span>My Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="weather-widget">
+          <span class="sun-icon">☀️</span>
+          <div class="weather-info">
+            <span class="temp">93°F</span>
+            <span class="condition">Sunny</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Header -->
+        <header class="header">
+          <h1>Employee Bio Information</h1>
+          <p>Please review and keep your personal and dependent details up to date.</p>
+          
+          <!-- Simple Text Eligibility Rules -->
+          <p class="eligibility-text">Son - 24 Years and above not eligible for insurance.</p>
+          <p class="eligibility-text">Daughter - If Married not eligible for insurance, Unmarried Daughter is Eligible regarless the age.</p>
+        </header>
+
+        <form id="bioForm">
+          <!-- 1. Personal Details Card -->
+          <section class="card">
+            <div class="card-header">
+              <i class="fa-solid fa-user"></i> 1. Personal Details
+            </div>
+            <div class="card-body">
+              
+              <!-- Row 1: Unit Name & Employee ID -->
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="unitName">Unit Name <span class="required">*</span></label>
+                  <input type="text" id="unitName" placeholder="Enter Unit Name" required>
+                </div>
+            <div class="form-group">
+                <label for="empId">Employee ID <span class="required">*</span></label>
+                <input type="text" id="empId" placeholder="e.g. 1024" maxlength="15" inputmode="numeric" required>
+                </div>
+
+              <!-- Row 2: Employee Name & Cell No -->
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="fullName">Employee Name (as per CNIC) <span class="required">*</span></label>
+                  <input type="text" id="fullName" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="cellNo">Cell No <span class="required">*</span></label>
+                    <input type="text" id="cellNo" placeholder="03XX-XXXXXXX" maxlength="12" required>
+                </div>
+              </div>
+
+              <!-- Row 3: Date of Birth & Employee CNIC -->
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="dob">Date of Birth (DOB) <span class="required">*</span></label>
+                  <input type="date" id="dob" required>
+                </div>
+                <div class="form-group">
+                  <label for="cnic">Employee CNIC <span class="required">*</span></label>
+                  <input type="text" id="cnic" placeholder="XXXXX-XXXXXXX-X" value="XXXXX-XXXXXXX-X" inputmode="numeric" required>
+                </div>
+              </div>
+
+              <!-- Row 4: Marital Status -->
+              <div class="form-group">
+                <label>Marital Status <span class="required">*</span></label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input type="radio" name="maritalStatus" value="Single" checked> Single
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="maritalStatus" value="Married"> Married
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 2. Dependents Details Card (Hidden when Single) -->
+          <section class="card hidden" id="dependentsCard">
+            <div class="card-header">
+              <i class="fa-solid fa-users"></i> 2. Dependents Details
+            </div>
+            <div class="card-body">
+              
+              <!-- Spouse Details Box -->
+              <div class="inner-box" id="spouseBox">
+                <div class="inner-header">
+                  <span class="inner-title">
+                    <i class="fa-solid fa-heart"></i> Spouse Details
+                  </span>
+                  <button type="button" class="btn-add" id="addSpouseBtn">
+                    <i class="fa-solid fa-plus"></i> Add Spouse
+                  </button>
+                </div>
+
+                <div id="spouseContainer">
+                  <div class="row-flex spouse-row">
+                    <div class="form-group flex-1">
+                      <label>Spouse Name</label>
+                      <input type="text" class="spouse-name" placeholder="Full name of spouse">
+                    </div>
+                    <div class="form-group flex-1">
+                      <label>Spouse CNIC</label>
+                      <input type="text" class="spouse-cnic" placeholder="XXXXX-XXXXXXX-X">
+                    </div>
+                    <div class="form-group flex-1">
+                      <label>Spouse DOB</label>
+                      <input type="date" class="spouse-dob">
+                    </div>
+                    <div class="action-col">
+                      <button type="button" class="btn-delete" title="Remove Spouse">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kids Details Box -->
+              <div class="inner-box">
+                <div class="inner-header">
+                  <span class="inner-title">
+                    <i class="fa-solid fa-child"></i> Kids Details
+                  </span>
+                  <button type="button" class="btn-add" id="addChildBtn">
+                    <i class="fa-solid fa-plus"></i> Add Child
+                  </button>
+                </div>
+
+                <div id="kidsContainer">
+                  <div class="row-flex kid-row">
+                    <div class="form-group flex-1">
+                      <label>Child Name</label>
+                      <input type="text" class="child-name" placeholder="Full name">
+                    </div>
+                    <div class="form-group flex-1">
+                      <label>B-Form Number</label>
+                      <input type="text" class="child-bform" placeholder="XXXXX-XXXXXXX-X">
+                    </div>
+                    <div class="form-group flex-1">
+                      <label>DOB</label>
+                      <input type="date" class="child-dob">
+                    </div>
+                    <div class="action-col">
+                      <button type="button" class="btn-delete" title="Remove Child">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <p id="noKidsText" class="empty-msg hidden">No children added yet.</p>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Form Actions -->
+          <div class="actions">
+            <button type="reset" class="btn-reset">Reset</button>
+            <button type="submit" class="btn-submit">
+              <i class="fa-solid fa-floppy-disk"></i> Submit & Save
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
