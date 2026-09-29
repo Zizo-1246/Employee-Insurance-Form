@@ -196,13 +196,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Contact Number Auto-formatting (03XX-XXXXXXX)
   cellInput.addEventListener("input", (e) => {
     // Only extract digits
-    let digits = e.target.value.replace(/\D/g, "");
 
+    let digits = e.target.value.replace(/\D/g, "");
     // Limit to 11 digits max (Pakistan phone format)
     if (digits.length > 11) {
       digits = digits.substring(0, 11);
     }
-
     // Auto format 03XX-XXXXXXX
     if (digits.length > 4) {
       e.target.value = `${digits.substring(0, 4)}-${digits.substring(4)}`;
@@ -210,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.value = digits;
     }
   });
+});
 
   // 2. Employee ID Restriction (Forces 'EMP-' prefix + Numbers only)
 document.addEventListener("DOMContentLoaded", () => {
@@ -222,19 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-    // Extract numeric part after EMP-
-    const numberPart = value.substring(4).replace(/\D/g, "");
-
-    e.target.value = "EMP-" + numberPart;
-  });
-
-  // Prevent user from deleting the 'EMP-' prefix easily via backspace
-  empIdInput.addEventListener("keydown", (e) => {
-    if (e.target.selectionStart <= 4 && (e.key === "Backspace" || e.key === "Delete")) {
-      e.preventDefault();
-    }
-  });
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -266,35 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Apni Apps Script ka NAYA URL yahan paste karein
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsi80B7i8iKzVk-qVWSITWamsqYK_EwxWWT3g_Uub9X3aDAbxIlA49d8PYQbZiA4JPXA/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzlyfatAF3jrUdGx4L3ptf1nvI9tcs4_ay1eOK-AT8VbqFyfSpU5UO5G2KaxSW6xXleAQ/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cellInput = document.getElementById("cellNo");
-  const empIdInput = document.getElementById("empId");
   const bioForm = document.getElementById("bioForm");
 
-  // Phone number numeric formatting
-  if (cellInput) {
-    cellInput.addEventListener("input", (e) => {
-      let digits = e.target.value.replace(/\D/g, "");
-      if (digits.length > 11) digits = digits.substring(0, 11);
-      if (digits.length > 4) {
-        e.target.value = `${digits.substring(0, 4)}-${digits.substring(4)}`;
-      } else {
-        e.target.value = digits;
-      }
-    });
-  }
-
-  // Employee ID numeric constraint
-  if (empIdInput) {
-    empIdInput.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/\D/g, "");
-    });
-  }
-
-  // Submit Handler
   if (bioForm) {
     bioForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -352,8 +315,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch((error) => {
-        console.error("Submission error:", error);
-        alert("Data save hone me masla hua.");
+        console.error("Error:", error);
+        alert("Data save karne me masla hua.");
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.innerText = "Submit & Save";
@@ -361,4 +324,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
+})
