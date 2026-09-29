@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Apni Apps Script ka NAYA URL yahan paste karein
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2yUSzrzk3Wh7X0VFRAgPEdpHQTmp8Ic6ObrO3HXf1j0IHPaigbJHh0G7CkzVHKKYD/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfPmhEuufryMNi73ImXqgw32s8Y848hNXdPTuxFMQ4xIHZNTjsILVDrvC9P0JdR_NlzQ/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
   const cellInput = document.getElementById("cellNo");
