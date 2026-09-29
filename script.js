@@ -266,35 +266,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Apni Apps Script ka NAYA URL yahan paste karein
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxGXW_VvCNJgU2xf0lezQXN-twv-8ctgp4tEUyIQu3kjpXjFV34BVNqt0Dw1t1fVYwwWQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsi80B7i8iKzVk-qVWSITWamsqYK_EwxWWT3g_Uub9X3aDAbxIlA49d8PYQbZiA4JPXA/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const cellInput = document.getElementById("cellNo");
-  const empIdInput = document.getElementById("empId");
   const bioForm = document.getElementById("bioForm");
 
-  // Phone number numeric formatting
-  if (cellInput) {
-    cellInput.addEventListener("input", (e) => {
-      let digits = e.target.value.replace(/\D/g, "");
-      if (digits.length > 11) digits = digits.substring(0, 11);
-      if (digits.length > 4) {
-        e.target.value = `${digits.substring(0, 4)}-${digits.substring(4)}`;
-      } else {
-        e.target.value = digits;
-      }
-    });
-  }
-
-  // Employee ID numeric constraint
-  if (empIdInput) {
-    empIdInput.addEventListener("input", (e) => {
-      e.target.value = e.target.value.replace(/\D/g, "");
-    });
-  }
-
-  // Submit Handler
   if (bioForm) {
     bioForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -352,8 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch((error) => {
-        console.error("Submission error:", error);
-        alert("Data save hone me masla hua.");
+        console.error("Error:", error);
+        alert("Data save karne me masla hua.");
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.innerText = "Submit & Save";
